@@ -10,6 +10,13 @@ struct SLT {
 
 typedef struct SLT Node;
 Node* buySLT(int val);
-void SLTInit();
+Node* SLTInit();
+void print(Node* head);
 
-
+void print(Node* head);
+Node* SLTBackPush(Node* head);
+Node* SLTBackpop(Node* head);
+Node* SLTFrontPush(Node* head);
+Node* SLTFrontPop(Node* head);
+Node* SLTInsert(Node* head,int value);
+Node* SLTErease(Node* head,int value);
