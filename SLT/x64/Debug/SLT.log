@@ -1,0 +1,5 @@
+﻿  SLT.c
+C:\Users\PreX\Documents\Visual Studio 2022\repo\Data_structure\SLT\SLT.c(19,21): warning C4047: '=': 'Node *' differs in levels of indirection from 'int'
+  test.c
+  Generating Code...
+  SLT.vcxproj -> C:\Users\PreX\Documents\Visual Studio 2022\repo\Data_structure\SLT\x64\Debug\SLT.exe
