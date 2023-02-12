@@ -1,6 +1,6 @@
 #include"SLT.h"
 int main() {
-	Node* head = SLTInit();
+	/*Node* head = SLTInit();
 
 	print(head);
 	SLTBackPush(head);
@@ -14,7 +14,7 @@ int main() {
 	head=SLTInsert(head, 5);
 	print(head);
 	head=SLTErease(head, 333333);
-	print(head);
+	print(head);*/
 	return 0;
 }
 

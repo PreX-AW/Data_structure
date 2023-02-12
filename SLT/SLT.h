@@ -9,14 +9,15 @@ struct SLT {
 };
 
 typedef struct SLT Node;
-Node* buySLT(int val);
-Node* SLTInit();
+Node* BuySLT(int val);
+Node* SLTCreat(int numbers);
 void print(Node* head);
 
 void print(Node* head);
-Node* SLTBackPush(Node* head);
-Node* SLTBackpop(Node* head);
-Node* SLTFrontPush(Node* head);
-Node* SLTFrontPop(Node* head);
-Node* SLTInsert(Node* head,int value);
-Node* SLTErease(Node* head,int value);
+void SLTBackPush(Node* head);
+void SLTBackpop(Node* head);
+void SLTFrontPush(Node* head);
+void SLTFrontPop(Node* head);
+void SLTInsert(Node* head,int value);
+void SLTErease(Node* head,int value);
+Node* SLTfind(Node*head,int val);

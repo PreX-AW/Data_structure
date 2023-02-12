@@ -1,5 +1,3 @@
 ﻿  SLT.c
-  test.c
-  Generating Code...
-C:\Users\PreX\Documents\Visual Studio 2022\repo\Data_structure\SLT\SLT.c(60): warning C4716: 'SLTBackpop': must return a value
+C:\Users\PreX\Documents\Visual Studio 2022\repo\Data_structure\SLT\SLT.c(163): warning C4716: 'SLTCreat': must return a value
   SLT.vcxproj -> C:\Users\PreX\Documents\Visual Studio 2022\repo\Data_structure\SLT\x64\Debug\SLT.exe
