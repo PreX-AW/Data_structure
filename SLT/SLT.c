@@ -160,6 +160,7 @@ Node* SLTCreat(int numbers) {
 			tail = tail->next;
 		}
 	}
+	return head;
 }
 void print(Node* head) {
 	Node* tail = head;
@@ -171,33 +172,88 @@ void print(Node* head) {
 
 }
 
+//************************************SLT_push_back**************************
+void SLTBackPush(Node** phead) {
+	if (*phead == NULL) {
+		*phead = BuySLT(100);
+		return;
+	}
+	Node* tail, * head;
+	tail = head = *phead;
+	while (tail->next) {
+		tail = tail->next;
+	}
+	Node* temp = BuySLT(100);
+	assert(temp);
+	tail->next = temp;
+	return;
 
-void SLTBackPush(Node* head) {
+}
+//************************************SLT_POP_BACK*******************************
+void SLTBackpop(Node** phead) {
+	assert(*phead);
+	Node* tail, * head;
+	tail = head = *phead;
+	while (tail->next->next) {
+		tail = tail->next;
+	}
+	free(tail->next);
+	tail->next = NULL;
 
 
 
 }
-void SLTBackpop(Node* head) {
+
+//************************************SLT_PUSH_FRONT**********************************
+void SLTFrontPush(Node** phead) {
+	Node* head, * tail;
+	head = tail = *phead;
+	if(*phead == NULL) {
+		*phead = BuySLT(5555);
+		return;
+	}
+	else {
+		*phead = BuySLT(5555);
+		(*phead)->next = tail;
+	}
+	return;
 
 
 }
-void SLTFrontPush(Node* head) {
-
-
-
-}
-void SLTFrontPop(Node* head) {
-
-
-}
-void SLTInsert(Node* head, int value) {
-
+//*******************************SLT_POP_FRONT*******************************
+void SLTFrontPop(Node** phead) {
+	assert(*phead);
+	Node* tail = (*phead)->next;
+	free(*phead);
+	*phead = tail;
+	return;
 
 }
-void SLTErease(Node* head, int value) {
+void SLTInsert_After(Node* head, int value) {
+	Node* pos = SLTfind(head, value);
+	assert(pos);
+	Node* tail = head;
+	while (tail != pos) {
+		tail = tail->next;
+	}
+	Node* temp = BuySLT(3333);
+	temp->next = tail->next;
+	tail->next = temp;
+	
 
-
-
-
+	return;
+}
+void SLTErease_After(Node* head, int value) {
+	assert(head);
+	Node* pos = SLTfind(head, value);
+	assert(pos);
+	Node* tail = head;
+	while (tail != pos) {
+		tail = tail->next;
+	}
+	Node* temp = tail->next;
+	tail->next = tail->next->next;
+	free(temp);
+	
 
 }

@@ -11,13 +11,12 @@ struct SLT {
 typedef struct SLT Node;
 Node* BuySLT(int val);
 Node* SLTCreat(int numbers);
-void print(Node* head);
 
 void print(Node* head);
-void SLTBackPush(Node* head);
-void SLTBackpop(Node* head);
-void SLTFrontPush(Node* head);
-void SLTFrontPop(Node* head);
-void SLTInsert(Node* head,int value);
-void SLTErease(Node* head,int value);
-Node* SLTfind(Node*head,int val);
+void SLTBackPush(Node** phead);
+void SLTBackpop(Node** Phead);
+void SLTFrontPush(Node** Phead);
+void SLTFrontPop(Node** phead);
+void SLTInsert_After(Node* head,int value);
+void SLTErease_After(Node* head,int value);
+Node* SLTfind_After(Node*head,int val);
