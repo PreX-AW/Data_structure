@@ -257,3 +257,14 @@ void SLTErease_After(Node* head, int value) {
 	
 
 }
+//***************************************SLT_Destory****************************
+void SLTDestory(Node** phead) {
+	Node* N1 = *phead;
+	while (N1 != NULL) {
+		Node* N2 = N1->next;
+		
+		free(N1);
+		N1 = N2;
+	}
+	*phead = NULL;
+}

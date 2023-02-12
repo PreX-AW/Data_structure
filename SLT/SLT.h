@@ -3,6 +3,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include<assert.h>
+#include<windows.h>
 struct SLT {
 	int data;
 	struct SLT* next;
@@ -20,3 +21,5 @@ void SLTFrontPop(Node** phead);
 void SLTInsert_After(Node* head,int value);
 void SLTErease_After(Node* head,int value);
 Node* SLTfind_After(Node*head,int val);
+
+void SLTDestory(Node** phead);
