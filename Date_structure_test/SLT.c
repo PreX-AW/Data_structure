@@ -273,7 +273,7 @@
 SLTNode* BuyNode(int val) {
 	SLTNode* Newnode = (SLTNode*)malloc(sizeof(SLTNode));
 	if (Newnode == NULL) {
-		perror(Newnode);
+		perror("NewNode");
 		return NULL;
 	}
 	Newnode->data = val;
@@ -302,4 +302,28 @@ void SLTprint(SLTNode* head) {
 		cur = cur->next;
 	}
 	printf("NULL\n");
+}
+
+
+void SLTPushBack(SLTNode**pphead){
+SLTNode*cur=*pphead;
+	if(cur==NULL){
+	*pphead=BuyNode(200);
+		return ;
+	}
+while(cur->next){
+cur=cur->next;
+
+}
+SLTNode*NewNode=BuyNode(200);
+	cur->next=NewNode;
+	return ;
+	
+	
+	
+	
+	
+
+
+
 }
