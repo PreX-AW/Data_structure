@@ -373,21 +373,60 @@ SLTNode* SLTNodeFind(SLTNode*phead,int val) {
 	return NULL;
 }
 
-//******************************SLTInertAfter_555********************************
-void SLTInsertAfter(SLTNode* phead, int val) {
-	SLTNode* tail = SLTNodeFind(phead,val);
-	assert(tail);
-	SLTNode* temp = tail->next;
-	tail->next = BuyNode(555);
-	tail->next->next = temp;
 
+//****************************SLTInsertAfter_555*********************************
+void SLTInsertAfter(SLTNode* pos,int val){
+assert(pos);
+	SLTNode*temp=pos->next;
+	SLTNode*newNode=BuyNode(555);
+	pos->next=newNode;
+	newNode->next=temp;
 }
+
+
 //******************************SLTEreaseAfter_555********************************
-void SLTEreaseAfter(SLTNode* phead, int val) {
-	SLTNode* tail = SLTNodeFind(phead, val);
-	assert(tail);
-	SLTNode* tamp = tail->next->next;
+void SLTEreaseAfter(SLTNode*pos){
+assert(pos);
+	if(pos->next==NULL){
+	return ;
+	}
+	SLTNode*temp=pos->next;
+	pos->next=pos->next->next;
+	free(temp);
+	temp=NULL;
+}
 
+//************************SLTInsert************************************
+void SLTInsert(SLTNode**pphead,SLTNode*pos,int val){
+	assert(pos);
+if(pos==*pphead){
+SLTPushFront(pphead,val);
+}
+	SLTNode*prev=*pphead;
+	while(prev->next!=pos){
+	prev=prev->next;
+	}
+	SLTNode*newNode=BuyNode(555);
+	newNode->next=prev->next;
+	preve->next=newNode;
+	
+}
 
+//***********************SLTErase************************************
+void SLTErase(SLT**pphead,SLTNode*pos){
+	assert(*pphead);
+	assert(pos);
+	 if(*pphead==pos){
+	 SLTPopFront(pphead);
+		 return ;
+	 }
+	 SLTNode*cur=*pphead;
+	while(cur->next!=pos){
+		cur=cur->next;
+	}
+	cur->next=pos->next;
+	free(pos);
+	pos=NULL;
 
 }
+
