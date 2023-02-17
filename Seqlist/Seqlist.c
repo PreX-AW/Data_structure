@@ -5,7 +5,7 @@
 
 
 
-// ¶ÔÊý¾ÝµÄ¹ÜÀí:ÔöÉ¾²é¸Ä 
+// å¯¹æ•°æ®çš„ç®¡ç†:å¢žåˆ æŸ¥æ”¹ 
 //**************************************Init********************************
 void SeqListInit(SeqList* ps) {
 	assert(ps);
@@ -108,7 +108,7 @@ void SeqListPopBack(SeqList* ps) {
 
 }
 
-// Ë³Ðò±í²éÕÒ
+// é¡ºåºè¡¨æŸ¥æ‰¾
 int SeqListFind(SeqList* ps, SLDateType x) {
 	assert(ps);
 
@@ -120,7 +120,7 @@ int SeqListFind(SeqList* ps, SLDateType x) {
 
 
 }
-// Ë³Ðò±íÔÚposÎ»ÖÃ²åÈëx
+// é¡ºåºè¡¨åœ¨posä½ç½®æ’å…¥x
 void SeqListInsert(SeqList* ps, int pos, SLDateType x) {
 	assert(ps);
 
@@ -139,7 +139,7 @@ void SeqListInsert(SeqList* ps, int pos, SLDateType x) {
 
 
 }
-// Ë³Ðò±íÉ¾³ýposÎ»ÖÃµÄÖµ
+// é¡ºåºè¡¨åˆ é™¤posä½ç½®çš„å€¼
 void SeqListErase(SeqList* ps, int pos) {/////////////////////////
 	assert(ps);
 	int i = pos;
@@ -164,4 +164,69 @@ void SeqListwrite(SeqList* ps, int x) {
 
 
 
+}
+
+
+
+
+
+
+//******************************************new-edition*****************************
+#include"Seqlist.h"
+//must defind a SL struct in main_function
+//****************************SeqInit*************************
+SL* Seqinit(SL*ps) {
+	assert(ps);
+	ps->arr = NULL;
+	ps->capacity = 0;
+	ps->size = 0;
+
+}
+
+
+//*********************************Seq_destory******************
+void Seqdestroy(SL* ps) {
+	assert(ps);
+	if (ps->arr) {
+		free(ps->arr);
+		ps->arr = NULL;
+		ps->capacity = ps->size = 0;
+	}
+}
+
+
+//********************************SeqPushBack************************
+void SeqPushBack(SL* ps,int val) {
+	assert(ps);
+	if (ps->size == ps->capacity) {//check if capacity equal to size
+		int newcapacity = ps->capacity == 0 ? 4 : ps->capacity * 2;//check if Seqlist is used
+		Datatype* temp = (Datatype*)realloc(ps->arr, newcapacity * sizeof(Datatype));
+		if (NULL == temp) {
+			perror("realloc fail");
+			exit(-1);
+		}
+		ps->capacity = newcapacity;
+		ps->arr = temp;
+	}
+
+	ps->arr[ps->size] = val;
+	ps->size++;
+
+}
+
+//**********************************SeqPopBack********************************
+void SeqlistPopBack(SL* ps) {
+	assert(ps);//empty SL CANnot pop
+	assert(ps->size>0);
+	ps->size--;// Seqlist use size(index) to visit elements,when use this position new element will overwrite the predecessor
+}
+
+
+//*********************************print*************************************
+void print(SL* ps) {
+	assert(ps);
+	int i = 0;
+	for (i; i < ps->size - 1; i++) {
+		printf("%d ", ps->arr[i]);
+	}
 }
