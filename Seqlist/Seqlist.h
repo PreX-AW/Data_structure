@@ -12,7 +12,7 @@ typedef struct SeqList
 	int capacity;
 }SeqList;
 
-// ¶ÔÊı¾İµÄ¹ÜÀí:ÔöÉ¾²é¸Ä 
+// å¯¹æ•°æ®çš„ç®¡ç†:å¢åˆ æŸ¥æ”¹ 
 void SeqListInit(SeqList* ps);
 void SeqListDestroy(SeqList* ps);
 
@@ -22,10 +22,30 @@ void SeqListPushFront(SeqList* ps, SLDateType x);
 void SeqListPopFront(SeqList* ps);
 void SeqListPopBack(SeqList* ps);
 
-// Ë³Ğò±í²éÕÒ
+// é¡ºåºè¡¨æŸ¥æ‰¾
 int SeqListFind(SeqList* ps, SLDateType x);
-// Ë³Ğò±íÔÚposÎ»ÖÃ²åÈëx
+// é¡ºåºè¡¨åœ¨posä½ç½®æ’å…¥x
 void SeqListInsert(SeqList* ps, int pos, SLDateType x);
-// Ë³Ğò±íÉ¾³ıposÎ»ÖÃµÄÖµ
+// é¡ºåºè¡¨åˆ é™¤posä½ç½®çš„å€¼
 void SeqListErase(SeqList* ps, int pos);
 void SeqListwrite(SeqList* ps, int x);
+
+//****************************************new-edition********************************
+#pragma once
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#define Default 4
+typedef int Datatype;
+typedef struct Seqlist {
+	int* arr;
+	Datatype size;
+	int capacity;
+}SL;
+
+SL* Seqinit(SL*ps);
+void SeqPushBack(SL* ps,int val);
+void SeqPopBack(SL* ps);
+void print(SL* ps);
+
+
