@@ -38,3 +38,137 @@ return slow;
 }
 
 //*********************************************
+
+
+//*********************************************SLT的中间节点******************************
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+
+struct ListNode* middleNode(struct ListNode* head) {
+struct ListNode*fast,*slow;
+fast=slow=head;
+while(fast&&fast->next){
+    fast=fast->next->next;
+    slow=slow->next;
+}
+return slow;
+
+
+}
+
+//*****************************************反转SLT*******************************
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+
+
+struct ListNode* reverseList(struct ListNode* head){
+if(NULL==head)return NULL;
+struct ListNode*prev,*cur,*tail;
+prev=NULL;
+cur=head;
+tail=head->next;
+while(cur){
+    cur->next=prev;
+    prev=cur;
+    
+    cur=tail;
+    if(tail){
+    tail=tail->next;
+
+    }
+}
+return prev;
+}
+
+//************************************************移除targetSLT节点*********************
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+
+
+struct ListNode* removeElements(struct ListNode* head, int val){
+if(NULL==head)return NULL;
+while(val==head->val){
+    head=head->next;
+    if(NULL==head)return NULL;
+}
+
+struct ListNode* prev,*cur;
+cur=head->next;
+prev=head;
+while(cur){
+if(val==cur->val){
+    prev->next=cur->next;
+    
+    cur=cur->next;
+    }
+else{
+    prev=cur;
+    cur=cur->next;
+    }
+}
+
+return head;
+}
+
+//**************************************merge tow list with no-decrease******************************
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+
+
+struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2){
+    if(NULL==list1)return list2;
+    if(NULL==list2)return list1;
+struct ListNode*l1cur,*l2cur,*cur,*list,temp;
+cur=&temp;
+l1cur=list1;
+l2cur=list2;
+list=list1->val>=list2->val? list2:list1;
+while(l1cur&&l2cur){
+    if(l1cur->val>=l2cur->val){
+        cur->next=l2cur;
+        cur=cur->next;
+        l2cur=l2cur->next;
+    }
+    else{
+        cur->next=l1cur;
+        cur=cur->next;
+        l1cur=l1cur->next;
+    }
+
+}
+while(l2cur){
+    cur->next=l2cur;
+    l2cur=l2cur->next;
+    cur=cur->next;
+}
+while(l1cur){
+    cur->next=l1cur;
+    l1cur=l1cur->next;
+    cur=cur->next;
+
+}
+
+
+return list;
+}
