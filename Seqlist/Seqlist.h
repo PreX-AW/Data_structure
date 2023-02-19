@@ -35,6 +35,7 @@ void SeqListwrite(SeqList* ps, int x);
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
+#include<assert.h>
 #define Default 4
 typedef int Datatype;
 typedef struct Seqlist {
@@ -48,4 +49,11 @@ void SeqPushBack(SL* ps,int val);
 void SeqPopBack(SL* ps);
 void print(SL* ps);
 
+void SeqPushFront(SL* ps, int val);
+void SeqPopFront(SL* ps);
+void SeqcapacityCheck(SL* ps);
+void SeqPushFront(SL* ps, int val);
+void SeqPopFront(SL* ps); 
+void SeqInsert(SL* ps, int pos,int val);
+void SeqErase(SL* ps,int pos);
 
