@@ -180,7 +180,7 @@ SL* Seqinit(SL*ps) {
 	ps->arr = NULL;
 	ps->capacity = 0;
 	ps->size = 0;
-
+	return ps;
 }
 
 
@@ -198,17 +198,7 @@ void Seqdestroy(SL* ps) {
 //********************************SeqPushBack************************
 void SeqPushBack(SL* ps,int val) {
 	assert(ps);
-	if (ps->size == ps->capacity) {//check if capacity equal to size
-		int newcapacity = ps->capacity == 0 ? 4 : ps->capacity * 2;//check if Seqlist is used
-		Datatype* temp = (Datatype*)realloc(ps->arr, newcapacity * sizeof(Datatype));
-		if (NULL == temp) {
-			perror("realloc fail");
-			exit(-1);
-		}
-		ps->capacity = newcapacity;
-		ps->arr = temp;
-	}
-
+	SeqcapacityCheck(ps);
 	ps->arr[ps->size] = val;
 	ps->size++;
 
@@ -218,7 +208,7 @@ void SeqPushBack(SL* ps,int val) {
 void SeqlistPopBack(SL* ps) {
 	assert(ps);//empty SL CANnot pop
 	assert(ps->size>0);
-	ps->size--;// Seqlist use size(index) to visit elements,when use this position new element will overwrite the predecessor
+	ps->size--;// Seqlist use size(index) to visit elements,when use this position ,new element will overwrite the predecessor
 }
 
 
@@ -229,4 +219,75 @@ void print(SL* ps) {
 	for (i; i < ps->size - 1; i++) {
 		printf("%d ", ps->arr[i]);
 	}
+}
+//****************************SeqPushFront*****************************
+void SeqPushFront(SL* ps, int val) {
+	assert(ps);
+	SeqcapacityCheck(ps);
+	for (int i = ps->size; i >= 1; i--) {
+		ps->arr[i] = ps->arr[i - 1];
+	}
+	ps->arr[0] = val;
+
+
+}
+//***************************SeqPopFront*********************************
+void SeqPopFront(SL* ps) {
+	assert(ps);
+	for (int i = 0; i < ps->size-1; i++) {
+		ps->arr[i] = ps->arr[i + 1];
+	}
+	ps->size--;
+}
+//****************************SeqcapacityCheck***************************
+void SeqcapacityCheck(SL* ps) {
+	if (ps->size == ps->capacity) {//check if capacity equal to size
+		int newcapacity = ps->capacity == 0 ? 4 : ps->capacity * 2;//check if Seqlist is used
+		Datatype* temp = (Datatype*)realloc(ps->arr, newcapacity * sizeof(Datatype));
+		if (NULL == temp) {
+			perror("realloc fail");
+			exit(-1);
+		}
+		ps->capacity = newcapacity;
+		ps->arr = temp;
+	}
+}
+
+
+//************************SeqInsert**********************************
+void SeqInsert(SL* ps, int pos, int val) {
+	assert(ps);
+	assert(pos >= 0);
+	assert(pos < ps->size);
+	SeqcapacityCheck(ps);//make check operate to be a function
+	for (int i = pos; i < ps->size - 1; i++) {
+		ps->arr[i + 1] = ps->arr[i];
+	}
+	//the Fronter overwrite the Latter
+	ps->arr[pos] = val;
+	ps->size++;
+
+
+}
+//************************SeqErase*************************
+void SeqErase(SL* ps,int pos){
+	assert(ps);
+	assert(pos >= 0);
+	assert(pos < ps->size);
+	for (int i = pos; i < ps->size - 1; i++) {
+		ps->arr[i] = ps->arr[i + 1];
+	}
+	//the Latter overwrite the Fronter
+	ps->size--;
+}
+
+
+
+//**********************Seqdestory************************
+void Seqdestory(SL* ps) {
+	assert(ps);
+	free(ps->arr);
+	ps->arr = NULL;
+	ps->capacity = 0;
+	ps->size = 0;
 }
