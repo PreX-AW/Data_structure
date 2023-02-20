@@ -172,3 +172,39 @@ while(l1cur){
 
 return list;
 }
+
+
+
+//*************************************************last K node*****************************
+/**
+ * struct ListNode {
+ *	int val;
+ *	struct ListNode *next;
+ * };
+ */
+
+/**
+ * 
+ * @param pListHead ListNode类 
+ * @param k int整型 
+ * @return ListNode类
+ */
+struct  ListNode* FindKthToTail(struct ListNode* pListHead, int k ) {
+int count=0;
+struct ListNode*fast,*slow;
+fast=slow=pListHead;
+int temp=k;
+while(k--){
+    if(NULL!=fast){
+    fast=fast->next;
+    count++;
+
+    }
+}
+if(count+1<=temp)return NULL;
+while(fast){
+    fast=fast->next;
+    slow=slow->next;
+}
+return slow;
+//**************************
