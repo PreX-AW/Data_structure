@@ -249,4 +249,92 @@ public:
         
     }
 };
-//*****************************************************************
+//*************************************same address SLTS****************
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+struct ListNode *getIntersectionNode(struct ListNode *headA, struct ListNode *headB) {
+                  int countA=0,countB=0;
+                  struct ListNode*curA=headA,*curB=headB;
+                  while(curA||curB){
+                      if(curA){
+                        curA=curA->next;
+                      countA++;
+                      }
+                      if(curB){
+                        curB=curB->next;
+                        countB++;
+                      }
+                        
+                  }
+                  if(curA!=curB)return NULL;
+               struct ListNode*fast=countA>countB?headA:headB;
+                struct ListNode*slow=countA>countB?headB:headA;
+                int step=countA-countB;
+                if(countA<countB)step=countB-countA;
+                while(step--){
+                    fast=fast->next;
+                    if(fast==NULL)return NULL;
+                }
+
+while(fast){
+    if(fast==slow)return fast;
+    fast=fast->next;
+    slow=slow->next;
+}
+return NULL;
+
+
+
+
+}
+//**************************************mirror SLT**********************
+ Node* middleNode( Node* head) {
+     Node* fast, * slow;
+    fast = slow = head;
+    while (fast && fast->next) {
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    return slow;
+
+
+}
+//反转回文链表
+ Node* reverseList( Node* head) {
+    if (NULL == head)return NULL;
+     Node* prev, * cur, * tail;
+    prev = NULL;
+    cur = head;
+    tail = head->next;
+    while (cur) {
+        cur->next = prev;
+        prev = cur;
+
+        cur = tail;
+        if (tail) {
+            tail = tail->next;
+
+        }
+    }
+    return prev;
+}
+//匹配函数
+int chkPalindrome(Node* A) {
+    // write code here
+    Node* rhead = middleNode(A);
+    rhead=reverseList(rhead);
+    while (rhead) {
+        if (rhead->val != A->val)return 0;;
+        rhead = rhead->next;
+        A = A->next;
+    }
+
+    return 1;
+
+}
+//*****************************************
