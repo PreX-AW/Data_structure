@@ -270,10 +270,11 @@
 
 
 #include"SLT.h"
+//*********************************************************SLTBuyNode***********************
 SLTNode* BuyNode(int val) {
 	SLTNode* Newnode = (SLTNode*)malloc(sizeof(SLTNode));
 	if (Newnode == NULL) {
-		perror(Newnode);
+		perror("Newnode");
 		return NULL;
 	}
 	Newnode->data = val;
@@ -281,25 +282,112 @@ SLTNode* BuyNode(int val) {
 	return Newnode;
 }
 
-
+//*********************************************SLTCreate***********************************
 SLTNode* SLTCreate(int val) {
-	SLTNode* head = NULL, * tail = NULL;
+	SLTNode* phead = NULL, * tail = NULL;
 	for (int i = 0; i < val; i++) {
-		if (head == NULL) {
-			head = tail = BuyNode(i);
+		if (phead == NULL) {
+			phead = tail = BuyNode(i);
 		}
 		else {
 			tail->next = BuyNode(i);
 			tail = tail->next;
 		}
 	}
-	return head;
+	return phead;
 }
-void SLTprint(SLTNode* head) {
-	SLTNode* cur = head;
+
+//********************************SLTprint**********************************
+void SLTprint(SLTNode* phead) {
+	SLTNode* cur = phead;
 	while (cur) {
 		printf("[%d]->", cur->data);
 		cur = cur->next;
 	}
 	printf("NULL\n");
+}
+
+
+//********************************SLTPushBack_100***************************
+void SLTPushBack(SLTNode** phead) {
+	SLTNode* tail = *phead;
+	if (tail == NULL) {
+		*phead = tail = BuyNode(100);
+		return *phead;
+	}
+	while (tail->next) {
+		tail = tail->next;
+	}
+	tail->next = BuyNode(100);
+
+}
+//******************************SLTPopBack_100 *******************************
+void SLTPopBack(SLTNode** pphead) {
+	assert(*pphead);
+	if ((*pphead)->next == NULL) {
+		free(*pphead);
+		*pphead = NULL;
+		return;
+	}
+	SLTNode* tail = *pphead, * prev = *pphead;
+	while (tail->next) {
+		prev = tail;
+		tail = tail->next;
+	}
+	free(tail);
+	prev->next = NULL;
+}
+
+//*******************************SLTPushFront_200***************************
+void SLTPushFront(SLTNode** pphead) {
+	if (*pphead == NULL) {
+		*pphead = BuyNode(200);
+		return;
+	}
+	SLTNode* tail = *pphead;
+	*pphead = BuyNode(200);
+	(*pphead)->next = tail;
+	return;
+
+
+}
+
+//*****************************SLTPopFront_200**************************************
+void SLTPopFront(SLTNode** pphead) {
+	assert(*pphead);
+	SLTNode* tail = (*pphead)->next;
+	free(*pphead);
+	*pphead = tail;
+
+
+}
+//********************************SLTNodeFind*************************************
+SLTNode* SLTNodeFind(SLTNode*phead,int val) {
+	SLTNode* cur = phead;
+	while (cur) {
+		if (cur->data == val) {
+			return cur;
+		}
+		else cur = cur->next;
+	}
+	return NULL;
+}
+
+//******************************SLTInertAfter_555********************************
+void SLTInsertAfter(SLTNode* phead, int val) {
+	SLTNode* tail = SLTNodeFind(phead,val);
+	assert(tail);
+	SLTNode* temp = tail->next;
+	tail->next = BuyNode(555);
+	tail->next->next = temp;
+
+}
+//******************************SLTEreaseAfter_555********************************
+void SLTEreaseAfter(SLTNode* phead, int val) {
+	SLTNode* tail = SLTNodeFind(phead, val);
+	assert(tail);
+	SLTNode* tamp = tail->next->next;
+
+
+
 }

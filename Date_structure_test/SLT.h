@@ -27,7 +27,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-
+#include<assert.h>
 
 
 
@@ -44,4 +44,9 @@ SLTNode* BuyNode(int val);
 SLTNode* SLTCreate(int val);
 
 
-void SLTprint(SLTNode* head);
+void SLTprint(SLTNode* phead);
+void SLTPushBack(SLTNode** phead);
+void SLTPopBack(SLTNode** pphead);
+void SLTPushFront(SLTNode** pphead);
+void SLTPopFront(SLTNode** pphead);
+void SLTInsertAfter(SLTNode* phead, int val);
