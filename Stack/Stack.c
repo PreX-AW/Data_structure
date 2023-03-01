@@ -36,4 +36,24 @@ while(cur<ptr->top){
 }
     printf("\n");
 
+
+}
+
+Datatype SKcat_Pop(SK*ptr){
+    assert(ptr);
+    return ptr->stack[ptr->top];
+}
+
+int SKsize(SK*ptr){
+    assert(ptr);
+    return ptr->top;
+}
+bool SKempty(SK*ptr){
+    return ptr->top;
+}
+void SKdestroy(SK*ptr){
+    free(ptr->stack);
+    ptr->stack=NULL;
+    ptr->top=0;
+    ptr->capacity=DEFAULT;
 }
