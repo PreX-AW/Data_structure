@@ -1,7 +1,5 @@
-#include"Quene.h"
+#include"Queue.h"
 int main(){
-
-
 
 
     

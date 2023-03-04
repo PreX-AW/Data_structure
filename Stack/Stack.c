@@ -46,7 +46,7 @@ ptr->top--;
 //Check_stack_Empty
 bool StkEmpty(Stk*ptr){
     assert(ptr);
-    return ptr->top;
+    return !(ptr->top);
 
 }
 
@@ -55,7 +55,7 @@ bool StkEmpty(Stk*ptr){
 //Get_stack_Top
 int StkTop(Stk*ptr){
     assert(ptr);
-    assert(ptr->top>1);
+    assert(ptr->top>0);
     return ptr->Stack[ptr->top-1];
 
 }
