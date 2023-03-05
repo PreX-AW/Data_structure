@@ -19,7 +19,7 @@ void StkPush(Stk*ptr,Datatype val);
 void StkPop(Stk*ptr);
 bool StkEmpty(Stk*ptr);
 int  StkTop(Stk*ptr);
-
+int  Stksize(Stk*ptr);
 
 
 

@@ -6,7 +6,11 @@
 void StkInit(Stk*ptr){
     assert(ptr);
     ptr->Stack=(Stk*)malloc(sizeof(Datatype)*4);
-    ptr->capacity=0;
+    if(NULL==ptr->Stack){
+        perror("malloc fail");
+        eixt(-1);
+    }
+    ptr->capacity=4;
     ptr->top=0;
 }
 
@@ -25,6 +29,10 @@ void StkPush(Stk*ptr,Datatype val){
 assert(ptr);
 if(ptr->top==ptr->capacity){
         Datatype*tmp=(Datatype*)realloc(ptr->Stack,sizeof(Datatype)*ptr->capacity*2);
+        if(NULL==tmp){
+            perror("realloc fail");
+            exit(-1);
+        }
         assert(tmp);
         ptr->Stack=tmp;
         ptr->capacity=ptr->capacity*2;
@@ -37,7 +45,8 @@ ptr->top++;
 //Pop_stack
 void StkPop(Stk*ptr){
 assert(ptr);
-assert(ptr->top>0);
+assert(!StkEmpty(ptr));//use function to judge if stack empty
+//assert(ptr->top>0);
 ptr->top--;           
 
 }
@@ -55,7 +64,12 @@ bool StkEmpty(Stk*ptr){
 //Get_stack_Top
 int StkTop(Stk*ptr){
     assert(ptr);
-    assert(ptr->top>0);
+    assert(!StkEmpty(ptr));
     return ptr->Stack[ptr->top-1];
 
+}
+
+int  Stksize(Stk*ptr){
+    assert(ptr);
+    return ptr->top;
 }
