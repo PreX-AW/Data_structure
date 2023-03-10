@@ -25,13 +25,13 @@ void Swap(HPDatatype* child, HPDatatype* parent) {
 
 
 
-void Adjustup(HP* php, int child) {
-	assert(php);
+void Adjustup(HPDatatype*a, int child) {
+	assert(a);
 	int parent = (child-1) / 2;
-	if (php->a[child] > php->a[parent]) {
+	if (a[child] > a[parent]) {
 		while (child > 0) {
-			if (php->a[child] > php->a[parent]) {//this judgement condition is elements compare ,not elements index
-				Swap(&php->a[child], &php->a[parent]);
+			if (a[child] > a[parent]) {//this judgement condition is elements compare ,not elements index
+				Swap(&a[child], &a[parent]);
 				child = parent;
 				parent = (child - 1) / 2;
 
@@ -45,9 +45,22 @@ void Adjustup(HP* php, int child) {
 
 }
 
-void Adjustdown(HPDatatype*parent, int size) {
-	assert(parent);
+void Adjustdown(HPDatatype*a,int parent  ,int size) {
+	assert(a);
+	int child = parent * 2 + 1;
 	
+	while (parent<size) {
+		if (a[child] < a[child + 1]) {
+			child++;
+		}
+		if (child<size && a[child] > a[parent]) {
+			Swap(&a[child], &a[parent]);
+			parent = child;
+			child = parent * 2 + 1;
+		}
+		else return;
+	}
+
 
 
 
@@ -72,31 +85,36 @@ void HPPush(HP* php,HPDatatype val) {
 	}
 	php->a[php->size] = val;
 	php->size++;
-	Adjustup(php, php->size - 1);
+	Adjustup(php->a, php->size - 1);//php->a is a HPDatatype pointer ,do not need get the address of a  
 
 }
 void HPPop(HP* php) {
 	assert(php);
 	assert(php->size > 0);
-	Swap(php->a[0], php->a[php->size - 1]);
+	Swap(&php->a[0], &php->a[php->size - 1]);
 	php->size--;
-	Adjustdown(&php->a[0], php->size);
-
-
-
-
+	Adjustdown(php->a,0,php->size-1);
 
 
 }
-void HPPrint(HP* php, int size) {
-	for (int i = 0; i < size; i++) {
+void HPPrint(HP* php) {
+	for (int i = 0; i < php->size; i++) {
 		printf("%d ", php->a[i]);
 	}
 	printf("\n");
 
-
-
-
 }
 
+
+bool HPEmpty(HP* php) {
+	assert(php);
+	return php->size == 0;
+}
+
+
+
+HPDatatype HPTop(HP* php) {
+	assert(php);
+	return php->a[0];
+}
 

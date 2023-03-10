@@ -11,10 +11,16 @@ void test1() {
 	for (int i = 0; i < sizeof(arr) / sizeof(arr[0]); i++) {
 		HPPush(&hp, arr[i]);
 	}
-	HPPrint(&hp, sizeof(arr) / sizeof(arr[0]));
+	HPPrint(&hp);
+	int k = 2;
+	while (k--) {
+		printf("%d ", HPTop(&hp));
+		HPPop(&hp);
 
-
+	}
 }
+
+
 
 int main() {
 	test1();

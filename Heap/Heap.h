@@ -14,12 +14,10 @@ typedef struct Heap {
 
 
 void HPInit(HP* php);
-void HPPush(HP* php,HPDatatype val);
+void HPPush(HPDatatype*a,int child);
 void HPPop(HP* php);
-void Adjustup(HP* php, int child);
-void Adjustdown(HPDatatype*parent, int size);
-void HPPrint(HP* php,int size);
-
+void HPPrint(HP* php);
+void HPEmtpy(HP* php);
 
 
 
